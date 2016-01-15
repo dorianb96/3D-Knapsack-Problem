@@ -6,12 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class MainFrame{
 	private JFrame mainFrame = new JFrame("Homepage");
@@ -53,6 +48,8 @@ public class MainFrame{
 		// an array with all the different types of algos we have
 		JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setPreferredSize(new Dimension(400, 70));
+		JRadioButton radioButton1 = new JRadioButton("Time",true);
+		JRadioButton radioButton2 = new JRadioButton("Combinations",false);
 		JComboBox algoList = new JComboBox(algoTypes);
 		algoList.setSelectedIndex(0);
 		JButton button = new JButton("Run Algoirthm");
@@ -62,7 +59,9 @@ public class MainFrame{
 	    		FinalFrame finalFrame = new FinalFrame(algoList.getSelectedIndex()); // creates the final frame using the index of the selected algo
 	    	}
 	    }
-		button.addActionListener(new algoStart()); 
+		button.addActionListener(new algoStart());
+		buttonsPanel.add(radioButton1);
+		buttonsPanel.add(radioButton2);
 		buttonsPanel.add(algoList); buttonsPanel.add(button);
 		return buttonsPanel;
 	}

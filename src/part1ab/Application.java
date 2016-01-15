@@ -73,6 +73,7 @@ public class Application extends TimeLimit {
      @param truck
      */
     public boolean fillTruck(Truck truck){
+        totalCombinations++;
         startTime = System.currentTimeMillis();
         ArrayList<Item> items = new Items().getItems();
         for (Item nextItem : items){
@@ -91,6 +92,7 @@ public class Application extends TimeLimit {
      * @return recursive call with next item
      */
     public boolean fillTruck(Truck truck, Item item){
+        totalCombinations++;
         if(truck.isFull()) {
             mostFilledTruck.setCargoSpace(truck.getCargoSpace());
             return true;
@@ -131,6 +133,7 @@ public class Application extends TimeLimit {
      @return recursive call
      */
     public boolean greedyFillTruck(Truck truck){
+        totalCombinations++;
         startTime = System.currentTimeMillis();
         ArrayList<Item> greedyItems = new Items().getGreedyItems();
         for (Item nextItem : greedyItems){
@@ -150,6 +153,7 @@ public class Application extends TimeLimit {
      @return recursive call
      */
     public boolean greedyFillTruck(Truck truck, Item item){
+        totalCombinations++;
         if (!truck.doesItemFit(item)) {
             return false;
         }

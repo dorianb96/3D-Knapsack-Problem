@@ -1,12 +1,10 @@
 package graphics;
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Arc2D;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import part1ab.Application;
 import part1ab.Truck;
@@ -26,6 +24,7 @@ public class FinalFrame {
 	private JFrame finalFrame = new JFrame("Results");
 	private DisplayPanel DisplayPanel;
 	private int score;
+	private double usage;
 	
 	public FinalFrame(int algoType, double timeLimit, int combinationLimit) {
 		System.out.println(timeLimit);
@@ -37,17 +36,17 @@ public class FinalFrame {
 			GreedyAlgorithmPento algo = new GreedyAlgorithmPento();
 			score = algo.getGreedy(truck);
 		} else if (algoType == 2) {
-			timeLimit =5;
 			Application app = new Application();
 			if(timeLimit != 0.0d) {
 				app.setTimeLimit(timeLimit);
 			}
 			if(combinationLimit != 0) {
-				app.setTimeLimit(combinationLimit);
+				app.setCombinationLimit(combinationLimit);
 			}
 			app.fillTruck(new Truck());
 			truck = app.getMostFilledTruck().getCargoSpace();
 			score = app.getMostFilledTruck().truckValue();
+			usage = app.getMostFilledTruck().truckUsage();
 			W = 5;
 			H = 8;
 			D = 33;
@@ -137,6 +136,7 @@ public class FinalFrame {
 	
 	public JPanel createBotPanel(int score) {
 		JPanel botPanel = new JPanel();
+		JLabel usageLbl = new JLabel("Usage: " + Double.toString(usage*100) + '%');
 		JLabel scoreLbl = new JLabel("Score: " + Integer.toString(score));
 		JButton rotateDown = new JButton("Rotate Down");
 		class down implements ActionListener {
@@ -153,8 +153,9 @@ public class FinalFrame {
 	    	}
 	    }
 		home.addActionListener(new home());
-		botPanel.add(rotateDown);
+		botPanel.add(usageLbl);
 		botPanel.add(scoreLbl);
+		botPanel.add(rotateDown);
 		botPanel.add(home);
 		return botPanel;
 	}

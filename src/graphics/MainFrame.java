@@ -49,7 +49,6 @@ public class MainFrame{
 
 	public double getTimeLimit(){
 		try {
-			System.out.println(Double.parseDouble(field1.getText()));
 			return (Double.parseDouble(field1.getText()));
 		}
 		catch (NumberFormatException e){

@@ -55,6 +55,7 @@ public class Application3 extends TimeLimit {
      * @return recursive call with next item
      */
     public boolean fillTruck(Pento3DTruck truck, double[][][] item){
+        totalCombinations++;
         if(truck.isFull()) {
             return true;
         }

@@ -44,7 +44,6 @@ public class TimeLimit {
             return (System.currentTimeMillis() - startTime > timeLimit);
         }
         if(countCombinations){
-            totalCombinations++;
             return (totalCombinations > combinationLimit);
         }
         return false;

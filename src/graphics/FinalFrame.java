@@ -27,8 +27,9 @@ public class FinalFrame {
 	private DisplayPanel DisplayPanel;
 	private int score;
 	
-	public FinalFrame(int algoType) {
-		
+	public FinalFrame(int algoType, double timeLimit, int combinationLimit) {
+		System.out.println(timeLimit);
+		System.out.println(timeLimit);
 		if (algoType == 0) {
 			GreedyAlgorithmStandard algo = new GreedyAlgorithmStandard();
 			score = algo.getGreedy(truck);
@@ -36,8 +37,14 @@ public class FinalFrame {
 			GreedyAlgorithmPento algo = new GreedyAlgorithmPento();
 			score = algo.getGreedy(truck);
 		} else if (algoType == 2) {
+			timeLimit =5;
 			Application app = new Application();
-			app.setTimeLimit(10);
+			if(timeLimit != 0.0d) {
+				app.setTimeLimit(timeLimit);
+			}
+			if(combinationLimit != 0) {
+				app.setTimeLimit(combinationLimit);
+			}
 			app.fillTruck(new Truck());
 			truck = app.getMostFilledTruck().getCargoSpace();
 			score = app.getMostFilledTruck().truckValue();

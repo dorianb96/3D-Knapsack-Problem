@@ -74,7 +74,7 @@ public class Truck  {
                 for (int k = nextFreeCell[2]; k < nextFreeCell[2] + item.getLengthZ(); k++) {
                     try {
                         /* make sure the program isn't overwriting anything */
-                        if (this.cargoSpace[i][j][k] != 0) {
+                        if (this.cargoSpace[i][j][k] != 0.0d) {
                       //      System.out.println("space already filled");
                             return false;
                         }
@@ -98,7 +98,6 @@ public class Truck  {
      @return boolean
      */
     public boolean doesItemFit(Item item, int[] freeCell) {
-        int[] nextFreeCell = freeCell;
         for (int i = nextFreeCell[0]; i < nextFreeCell[0] + item.getWidthX(); i++) {
             for (int j = nextFreeCell[1]; j < nextFreeCell[1] + item.getHeightY(); j++) {
                 for (int k = nextFreeCell[2]; k < nextFreeCell[2] + item.getLengthZ(); k++) {
@@ -141,10 +140,9 @@ public class Truck  {
      @param item
      */
     public void placeItem(Item item, int[] freeCell) {
-        int[] nextFreeCell = freeCell;
-        for (int i = nextFreeCell[0]; i < nextFreeCell[0] + item.getWidthX(); i++) {
-            for (int j = nextFreeCell[1]; j < nextFreeCell[1] + item.getHeightY(); j++) {
-                for (int k = nextFreeCell[2]; k < nextFreeCell[2] + item.getLengthZ(); k++) {
+        for (int i = freeCell[0]; i < freeCell[0] + item.getWidthX(); i++) {
+            for (int j = freeCell[1]; j < freeCell[1] + item.getHeightY(); j++) {
+                for (int k = freeCell[2]; k < freeCell[2] + item.getLengthZ(); k++) {
                     this.cargoSpace[i][j][k] = item.getType();
                 }
             }

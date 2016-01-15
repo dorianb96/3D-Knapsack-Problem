@@ -13,9 +13,9 @@ public class AppTester {
         and then we add how much time we allow the program to run
         */
 
-        part1ab.Application app = new part1ab.Application();
-        app.setTimeLimit(20);
-        app.fillTruck(new part1ab.Truck());
+        Application app = new Application();
+        app.setTimeLimit(2);
+        app.fillTruck(new Truck());
         app.finalFill();
         Truck mostFilledTruck = app.getMostFilledTruck();
         System.out.println(mostFilledTruck.truckUsage());

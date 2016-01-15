@@ -29,7 +29,6 @@ public class Items extends ArrayList{
         /** initialize a new arrayList which holds all items.
          part1ab.Items will be mainly used for accessing so an ArrayList
          is the fastest option */
-
         items = new ArrayList<Item>(10);
         items.add(item1); items.add(item2);
         items.add(item3); items.add(item4);

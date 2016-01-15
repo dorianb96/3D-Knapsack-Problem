@@ -152,6 +152,7 @@ public class Application2 extends TimeLimit {
      * @return board with pentominoes placed to maximize value
      */
     public boolean boardGreedyFill(Board board, double[][] pento) {
+        totalCombinations++;
         if (!board.doesItemFit(pento)) {
             return false;
         }

@@ -38,7 +38,6 @@ public class Application extends TimeLimit {
         ArrayList<int[]> freeCoordinates = new ArrayList<>();
         System.out.println(freeCoordinates.size());
 
-
         for (int i = 0; i < cargoSpace.length; i++){
             for (int j = 0; j < cargoSpace[0].length; j++){
                 for (int k = 0; k < cargoSpace[0][0].length; k++){
@@ -67,7 +66,6 @@ public class Application extends TimeLimit {
                 }
             }
         }
-        System.out.println(freeCoordinates.size());
     }
     /**
     fills the space of truck as much as possible
@@ -114,7 +112,6 @@ public class Application extends TimeLimit {
             for (Item nextItem : items){
                 Truck truck2 = new Truck();
                 truck2.setCargoSpace(truck.getCargoSpace());
-                System.out.println(mostFilledTruck.truckUsage());
                 truck2.placeItem(item);
                 if(fillTruck(truck2,nextItem)){
                     return true;

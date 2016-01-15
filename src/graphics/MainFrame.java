@@ -48,7 +48,7 @@ public class MainFrame{
 		// an array with all the different types of algos we have
 		JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setPreferredSize(new Dimension(400, 70));
-		JRadioButton radioButton1 = new JRadioButton("Time",true);
+		JRadioButton radioButton1 = new JRadioButton("Time",false);
 		JRadioButton radioButton2 = new JRadioButton("Combinations",false);
 		JComboBox algoList = new JComboBox(algoTypes);
 		algoList.setSelectedIndex(0);

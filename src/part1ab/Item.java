@@ -1,7 +1,7 @@
 package part1ab;
 
 public class Item {
-    public Item(double type, double widthX, double heightY, double lengthZ, double value){
+    public Item(double type, int widthX, int heightY, int lengthZ, double value){
         /** the x,y,z dimensions are multiplied by 2 as agreement of representing
          the smallest cell unit with dimensions of 1, not 0.5 just for easier iteration*/
         this.type = type;
@@ -11,13 +11,13 @@ public class Item {
         this.value = value;
     }
     /* here are the usual getters */
-    public double getWidthX(){
+    public int getWidthX(){
         return this.widthX;
     }
-    public double getHeightY(){
+    public int getHeightY(){
         return this.heightY;
     }
-    public double getLengthZ(){
+    public int getLengthZ(){
         return this.lengthZ;
     }
     public double getValue(){
@@ -30,9 +30,9 @@ public class Item {
         return (this.widthX * this.heightY * this.lengthZ);};
 
     /*all instance fields*/
-    private double widthX;
-    private double heightY;
-    private double lengthZ;
+    private int widthX;
+    private int heightY;
+    private int lengthZ;
 
     private double value;    // represents the value of item for problem b
     private double type;    // maybe useful for 3D display

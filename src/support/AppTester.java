@@ -14,7 +14,7 @@ public class AppTester {
         */
 
         Application app = new Application();
-        app.setTimeLimit(2);
+        app.setTimeLimit(5);
         app.fillTruck(new Truck());
         app.finalFill();
         Truck mostFilledTruck = app.getMostFilledTruck();

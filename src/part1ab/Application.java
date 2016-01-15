@@ -43,6 +43,10 @@ public class Application extends TimeLimit {
                 for (int k = 0; k < cargoSpace[0][0].length; k++){
                     if (cargoSpace[i][j][k] == 0){
                         int[] array = new int[3];
+                        array[0] = i;
+                        array[1] = j;
+                        array[2] = k;
+
                         freeCoordinates.add(array);
                     }
                 }
@@ -50,14 +54,20 @@ public class Application extends TimeLimit {
         }
         int i =0;
         for (int[] freeCoordinate : freeCoordinates){
+            Item item1 = new Item(1,1,1,1,1);
             ArrayList<Item> items = new Items().getItems();
+            //items.add(item1);
             for (Item item : items){
+                System.out.println(item.getWidthX());
+                System.out.println(item.getHeightY());
+                System.out.println(item.getLengthZ());
+                System.out.println();
                 i++;
-                System.out.println(i);
+                //System.out.println(freeCoordinates.size());
 
                 Truck localMostFilledTruck = new Truck();
                 localMostFilledTruck.setCargoSpace(cargoSpace);
-                if (localMostFilledTruck.doesItemFit(item,freeCoordinate)){
+                if (localMostFilledTruck.doesItemFit(item,freeCoordinate,localMostFilledTruck.getCargoSpace())){
                     System.out.println("WOWOWOWOWOWOWOW");
                     localMostFilledTruck.placeItem(item,freeCoordinate);
                     if (localMostFilledTruck.truckUsage() > this.mostFilledTruck.truckUsage()){

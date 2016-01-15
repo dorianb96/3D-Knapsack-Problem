@@ -97,20 +97,19 @@ public class Truck  {
      @param item
      @return boolean
      */
-    public boolean doesItemFit(Item item, int[] freeCell) {
-        for (int i = nextFreeCell[0]; i < nextFreeCell[0] + item.getWidthX(); i++) {
-            for (int j = nextFreeCell[1]; j < nextFreeCell[1] + item.getHeightY(); j++) {
-                for (int k = nextFreeCell[2]; k < nextFreeCell[2] + item.getLengthZ(); k++) {
+    public boolean doesItemFit(Item item, int[] freeCell,double[][][] cargoSpace) {
+        for (int i = freeCell[0] + item.getWidthX(); i > freeCell[0]; i--) {
+            for (int j = freeCell[1] + item.getHeightY(); j > freeCell[1]; j--) {
+                for (int k = freeCell[2] + item.getLengthZ(); k > freeCell[2]; k--) {
                     try {
                         /* make sure the program isn't overwriting anything */
-                        if (this.cargoSpace[i][j][k] != 0) {
-                            //      System.out.println("space already filled");
-                            return false;
+                        if (cargoSpace[i][j][k] != 0.0d) {
+                            throw new RuntimeException();
                         }
                     }
                     /* make sure we are staying in bounds of the array */
                     catch (ArrayIndexOutOfBoundsException e) {
-                        //   System.out.println("array out of bounds exception");
+                        System.out.println("array out of bounds exception");
                         return false;
                     }
                 }

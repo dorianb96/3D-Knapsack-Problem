@@ -174,14 +174,14 @@ public class Application extends TimeLimit {
             return true;
         }
         else{
-            if (truck.truckValue() > mostValuableTruck.truckValue() ){
-                mostValuableTruck.setCargoSpace(truck.getCargoSpace());
-            }
             ArrayList<Item> greedyItems = new Items().getGreedyItems();
             for (Item nextItem : greedyItems){
                 Truck truck2 = new Truck();
                 truck2.setCargoSpace(truck.getCargoSpace());
                 truck2.placeItem(item);
+                if (truck.truckValue() > mostValuableTruck.truckValue() ){
+                    mostValuableTruck.setCargoSpace(truck.getCargoSpace());
+                }
                 if(greedyFillTruck(truck2,nextItem)){
                     return true;
                 }

@@ -41,7 +41,7 @@ public class FinalFrame {
 				app.setTimeLimit(timeLimit);
 			}
 			if(combinationLimit != 0) {
-				app.setCombinationLimit(combinationLimit);
+				app.setTimeLimit(combinationLimit);
 			}
 			app.fillTruck(new Truck());
 			truck = app.getMostFilledTruck().getCargoSpace();
@@ -153,9 +153,10 @@ public class FinalFrame {
 	    	}
 	    }
 		home.addActionListener(new home());
+		botPanel.setLayout(new GridLayout(3,1));
+		botPanel.add(rotateDown);
 		botPanel.add(usageLbl);
 		botPanel.add(scoreLbl);
-		botPanel.add(rotateDown);
 		botPanel.add(home);
 		return botPanel;
 	}

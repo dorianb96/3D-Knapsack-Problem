@@ -12,7 +12,6 @@ public class AppTester {
         in the fillTruck method we first add the truck we want
         and then we add how much time we allow the program to run
         */
-
         Application app = new Application();
         app.setTimeLimit(5);
         app.fillTruck(new Truck());

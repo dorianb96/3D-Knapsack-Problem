@@ -80,7 +80,7 @@ public class Application extends TimeLimit {
     /**
     fills the space of truck as much as possible
     but optimizing it's route with placing algorithm and pruning
-     @param truck
+     @param truck input which is then received to fill
      */
     public boolean fillTruck(Truck truck){
         totalCombinations++;
@@ -97,8 +97,8 @@ public class Application extends TimeLimit {
 
     /**
      * continues the recursion
-     * @param truck
-     * @param item
+     * @param truck gets the reference of truck
+     * @param item item which needs to be tried to put in
      * @return recursive call with next item
      */
     public boolean fillTruck(Truck truck, Item item){
@@ -117,14 +117,14 @@ public class Application extends TimeLimit {
             return false;
         }
         else{
-            if (truck.truckUsage() > mostFilledTruck.truckUsage() ){
-                mostFilledTruck.setCargoSpace(truck.getCargoSpace());
-            }
             ArrayList<Item> items = new Items().getItems();
             for (Item nextItem : items){
                 Truck truck2 = new Truck();
                 truck2.setCargoSpace(truck.getCargoSpace());
                 truck2.placeItem(item);
+                if (truck2.truckUsage() > mostFilledTruck.truckUsage() ){
+                    mostFilledTruck.setCargoSpace(truck2.getCargoSpace());
+                }
                 if(fillTruck(truck2,nextItem)){
                     return true;
                 }
@@ -139,7 +139,7 @@ public class Application extends TimeLimit {
 
     it also places the items but sorted by their - value per unit of space ie. the most valuable items
     compared to space the take will be placed first.
-     @param truck
+     @param truck input truck
      @return recursive call
      */
     public boolean greedyFillTruck(Truck truck){
@@ -158,8 +158,8 @@ public class Application extends TimeLimit {
 
      it also places the items but sorted by their - value per unit of space ie. the most valuable items
      compared to space the take will be placed first.
-     @param truck
-     @param item
+     @param truck an reference for current truck state
+     @param item current item which needs to be tried
      @return recursive call
      */
     public boolean greedyFillTruck(Truck truck, Item item){

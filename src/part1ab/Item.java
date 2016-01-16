@@ -1,6 +1,6 @@
 package part1ab;
 
-public class Item {
+public class Item  {
     public Item(double type, int widthX, int heightY, int lengthZ, double value){
         /** the x,y,z dimensions are multiplied by 2 as agreement of representing
          the smallest cell unit with dimensions of 1, not 0.5 just for easier iteration*/
@@ -11,6 +11,19 @@ public class Item {
         this.value = value;
     }
     /* here are the usual getters */
+    public int compareTo(Item item){
+        if (this.widthX > item.widthX){
+            return 1;
+        }
+        else if (this.widthX < item.widthX){
+            return -1;
+        }
+        else{
+            return 0;
+        }
+
+        //return Double.compare(item.getValue() / item.getVolume(), this.getValue() / this.getVolume());
+    }
     public int getWidthX(){
         return this.widthX;
     }

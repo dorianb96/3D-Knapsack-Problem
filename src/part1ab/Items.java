@@ -65,5 +65,14 @@ public class Items extends ArrayList{
         }
         return items;
     }
+    class ValuePerSpaceCompare implements Comparator<Item>{
+        public int compare(Item one, Item two){
+            return Double.compare(one.getVolume(),two.getVolume());
+        }
+    }
+    public ArrayList<Item> timSort(ArrayList<Item> items){
+        Collections.sort(items,new ValuePerSpaceCompare());
+        return items;
+    }
     private ArrayList<Item> items;
 }

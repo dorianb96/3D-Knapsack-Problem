@@ -104,7 +104,7 @@ public class Truck  {
                     try {
                         /* make sure the program isn't overwriting anything */
                         if (cargoSpace[i][j][k] != 0.0d) {
-                            throw new RuntimeException();
+                            return false;
                         }
                     }
                     /* make sure we are staying in bounds of the array */

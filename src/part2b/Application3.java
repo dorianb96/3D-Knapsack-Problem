@@ -11,7 +11,10 @@ public class Application3 extends TimeLimit {
      * whole cargo is too time intensive
      */
     Pento3DTruck mostValuableTruck = new Pento3DTruck(); // the diamond operator
-
+    public int getMostValuableTruckValue(){
+        mostValuableTruck.printCargoSpace();
+        return mostValuableTruck.truckValue();
+    }
     public Truck getMostValuableTruck(){
         Truck mostValuableTruck = new Truck();
         double[][][] mostValuableCargoSpace = this.mostValuableTruck.getCargoSpace();
@@ -19,13 +22,12 @@ public class Application3 extends TimeLimit {
         for (int i = 0; i <5; i++){
             for (int j = 0; j < 4; j++){
                 for (int k = 0; k < 33; k++){
-                    cargoSpace[i][j][k] = mostValuableCargoSpace[i][j][k%3];
-                    cargoSpace[i][j+4][k] = mostValuableCargoSpace[i][j][k%3];
+                    cargoSpace[i][j][k] = mostValuableCargoSpace[i][j][k%11];
+                    cargoSpace[i][j+4][k] = mostValuableCargoSpace[i][j][k%11];
                 }
             }
             mostValuableTruck.setCargoSpace(cargoSpace);
         }
-        System.out.println(cargoSpace[1][1].length);
         mostValuableTruck.setCargoSpace(cargoSpace);
         mostValuableTruck.printCargoSpace();
         mostValuableTruck.truckValue();
@@ -37,7 +39,6 @@ public class Application3 extends TimeLimit {
      @param truck
      */
     public boolean fillTruck(Pento3DTruck truck){
-        System.out.println("here");
         startTime = System.currentTimeMillis();
         totalCombinations++;
         ArrayList<double[][][]> items = new Pento3D().getGreedyPents3D();
@@ -60,21 +61,20 @@ public class Application3 extends TimeLimit {
             return true;
         }
         else if (checkLimits()){
-            System.out.println("here");
             return true;
         }
         else if (!truck.doesItemFit(item)) {
             return false;
         }
         else{
-            if (truck.truckValue() > mostValuableTruck.truckValue() ){
-                mostValuableTruck.setCargoSpace(truck.getCargoSpace());
-            }
             ArrayList<double[][][]> items = new Pento3D().getGreedyPents3D();
             for (double[][][] nextItem : items) {
                 Pento3DTruck truck2 = new Pento3DTruck();
                 truck2.setCargoSpace(truck.getCargoSpace());
                 truck2.placeItem(item);
+                if (truck.truckValue() > mostValuableTruck.truckValue() ){
+                    mostValuableTruck.setCargoSpace(truck.getCargoSpace());
+                }
                 if(fillTruck(truck2,nextItem)){
                     return true;
                 }

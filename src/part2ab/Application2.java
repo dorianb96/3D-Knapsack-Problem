@@ -26,11 +26,9 @@ public class Application2 extends TimeLimit {
         Truck mostFilledTruck = new Truck();
         double[][][] cargoSpace = new double[5][8][33];
         if (mostFilledBoard.getBoard().length == 5 && mostFilledBoard.getBoard()[0].length ==8 ){
-            System.out.println("here");
             for (int z = 0; z < 33; z++){
                 for (int i = 0; i < 5; i++) {
                     for (int j = 0; j < 8; j++) {
-                        System.out.println("in there yeah yeah");
                         cargoSpace[i][j][z] = mostFilledBoard.getBoard()[i][j];
                     }
                 }
@@ -38,8 +36,6 @@ public class Application2 extends TimeLimit {
             mostFilledTruck.setCargoSpace(cargoSpace);
         }
         else if (mostFilledBoard.getBoard().length == 8 && mostFilledBoard.getBoard()[0].length ==5 ){
-            System.out.println("here");
-
             for (int z = 0; z < 33; z++){
                 for (int i = 0; i < 5; i++) {
                     for (int j = 0; j < 8; j++) {
@@ -59,7 +55,6 @@ public class Application2 extends TimeLimit {
             for (int z = 0; z < 33; z++){
                 for (int i = 0; i < 5; i++) {
                     for (int j = 0; j < 8; j++) {
-                        System.out.println("in there yeah yeah");
                         cargoSpace[i][j][z] = mostValuableBoard.getBoard()[i][j];
                     }
                 }
@@ -67,8 +62,6 @@ public class Application2 extends TimeLimit {
             mostValuableTruck.setCargoSpace(cargoSpace);
         }
         else if (mostValuableBoard.getBoard().length == 8 && mostValuableBoard.getBoard()[0].length ==5 ){
-            System.out.println("here");
-
             for (int z = 0; z < 33; z++){
                 for (int i = 0; i < 5; i++) {
                     for (int j = 0; j < 8; j++) {
@@ -110,15 +103,14 @@ public class Application2 extends TimeLimit {
             return true;
         }
         else {
-            if (board.boardUsage() > mostFilledBoard.boardUsage()) {
-                mostFilledBoard.setBoard(board.getBoard());
-                mostFilledBoard.printBoard();
-            }
             ArrayList<double[][]> pents = new Pentos2D().getPentos();
             for (double[][] nextItem : pents) {
                 Board newBoard = new Board();
                 newBoard.setBoard(board.getBoard());
                 newBoard.placeItem(pento);
+                if (board.boardUsage() > mostFilledBoard.boardUsage()) {
+                    mostFilledBoard.setBoard(board.getBoard());
+                }
                 if (boardFill(newBoard, nextItem)) {
                     return true;
                 }
@@ -160,15 +152,14 @@ public class Application2 extends TimeLimit {
             return true;
         }
         else {
-            if (board.boardValue() > mostValuableBoard.boardValue()) {
-                mostValuableBoard.setBoard(board.getBoard());
-                mostValuableBoard.printBoard();
-            }
             ArrayList<double[][]> pents = new Pentos2D().getGreedyPents();
             for (double[][] nextItem : pents) {
                 Board newBoard = new Board();
                 newBoard.setBoard(board.getBoard());
                 newBoard.placeItem(pento);
+                if (board.boardValue() > mostValuableBoard.boardValue()) {
+                    mostValuableBoard.setBoard(board.getBoard());
+                }
                 if (boardGreedyFill(newBoard, nextItem)) {
                     return true;
                 }

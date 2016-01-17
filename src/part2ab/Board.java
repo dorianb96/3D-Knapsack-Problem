@@ -81,9 +81,7 @@ public class Board  {
      */
     public void printBoard(){
         for (int i = 0; i < this.board.length; i++){
-            System.out.println();
             for (int j = 0; j < this.board[i].length; j++) {
-                System.out.print(this.board[i][j] + " ");
             }
         }
     }
@@ -99,8 +97,6 @@ public class Board  {
             int y = 0;
             for (int j = nextFreeCell[1]; j < nextFreeCell[1] + pento[0].length; j++) {
                 if (pento[i - nextFreeCell[0]][j-nextFreeCell[1]] != 0){
-                //    System.out.println("placing item at " + i + " " + j);
-                //    System.out.println("the value placed at cell is" + pento[i - nextFreeCell[0]][j-nextFreeCell[1]]);
                     this.board[i][j] = pento[x][y];
                 }
                 y++;

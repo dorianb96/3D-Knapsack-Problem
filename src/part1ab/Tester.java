@@ -14,7 +14,7 @@ public class Tester {
     @Test
     public void test2(){
         Application app = new Application();
-        app.setTimeLimit(10);
+        app.setTimeLimit(20000);
         app.greedyFillTruck(new Truck());
         Truck mostValuableTruck = app.getMostValuableTruck();
         System.out.println(mostValuableTruck.truckValue());

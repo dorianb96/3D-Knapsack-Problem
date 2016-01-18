@@ -28,55 +28,6 @@ public class Application extends TimeLimit {
     public Truck getMostValuableTruck(){
         return this.mostValuableTruck;
     }
-
-    /**
-     * this method first collects free coordinates and then tries to place
-     * all remaining items into them
-     */
-    public void finalFill(){
-        double[][][] cargoSpace = this.mostFilledTruck.getCargoSpace();
-        ArrayList<int[]> freeCoordinates = new ArrayList<>();
-        System.out.println(freeCoordinates.size());
-
-        for (int i = 0; i < cargoSpace.length; i++){
-            for (int j = 0; j < cargoSpace[0].length; j++){
-                for (int k = 0; k < cargoSpace[0][0].length; k++){
-                    if (cargoSpace[i][j][k] == 0){
-                        int[] array = new int[3];
-                        array[0] = i;
-                        array[1] = j;
-                        array[2] = k;
-
-                        freeCoordinates.add(array);
-                    }
-                }
-            }
-        }
-        int i =0;
-        for (int[] freeCoordinate : freeCoordinates){
-            Item item1 = new Item(1,1,1,1,1);
-            ArrayList<Item> items = new Items().getItems();
-            //items.add(item1);
-            for (Item item : items){
-                System.out.println(item.getWidthX());
-                System.out.println(item.getHeightY());
-                System.out.println(item.getLengthZ());
-                System.out.println();
-                i++;
-                //System.out.println(freeCoordinates.size());
-
-                Truck localMostFilledTruck = new Truck();
-                localMostFilledTruck.setCargoSpace(cargoSpace);
-                if (localMostFilledTruck.doesItemFit(item,freeCoordinate,localMostFilledTruck.getCargoSpace())){
-                    System.out.println("WOWOWOWOWOWOWOW");
-                    localMostFilledTruck.placeItem(item,freeCoordinate);
-                    if (localMostFilledTruck.truckUsage() > this.mostFilledTruck.truckUsage()){
-                        mostFilledTruck.setCargoSpace(localMostFilledTruck.getCargoSpace());
-                    }
-                }
-            }
-        }
-    }
     /**
     fills the space of truck as much as possible
     but optimizing it's route with placing algorithm and pruning
@@ -85,6 +36,9 @@ public class Application extends TimeLimit {
     public boolean fillTruck(Truck truck){
         totalCombinations++;
         startTime = System.currentTimeMillis();
+        // you can choose to get items sorted as
+        // 1 - getRandomItems() -- random selection
+        // 2 - getItems() -- sorted by descending/ascending volume
         ArrayList<Item> items = new Items().getItems();
         for (Item nextItem : items){
             totalCombinations++;
@@ -145,7 +99,7 @@ public class Application extends TimeLimit {
     public boolean greedyFillTruck(Truck truck){
         totalCombinations++;
         startTime = System.currentTimeMillis();
-        ArrayList<Item> greedyItems = new Items().getGreedyItems();
+        ArrayList<Item> greedyItems = new Items().getRandomItems();
         for (Item nextItem : greedyItems){
             Truck newTruck = new Truck();
             newTruck.setCargoSpace(truck.getCargoSpace());
@@ -174,7 +128,7 @@ public class Application extends TimeLimit {
             return true;
         }
         else{
-            ArrayList<Item> greedyItems = new Items().getGreedyItems();
+            ArrayList<Item> greedyItems = new Items().getRandomItems();
             for (Item nextItem : greedyItems){
                 Truck truck2 = new Truck();
                 truck2.setCargoSpace(truck.getCargoSpace());

@@ -30,49 +30,55 @@ public class Items extends ArrayList{
          part1ab.Items will be mainly used for accessing so an ArrayList
          is the fastest option */
         items = new ArrayList<Item>(10);
-        items.add(item1); items.add(item2);
-        items.add(item3); items.add(item4);
-        items.add(item5); items.add(item6);
-        items.add(item7); items.add(item8);
-        items.add(item9); items.add(item10);
+        items.add(item10);
+        items.add(item3);
+        items.add(item8);
+        items.add(item4);
+        items.add(item6);
+        items.add(item9);
+        items.add(item1);
+        items.add(item5);
+        items.add(item2);
+        items.add(item7);
+
 
     }
     public ArrayList<Item> getItems(){
-        return this.items;
+        return greedySpaceSort(items);
     }
     public ArrayList<Item> getGreedyItems(){
-        ArrayList<Item> greedyItems = new ArrayList<Item>(10);
-        greedyItems = greedySort(items);
-        return greedyItems;
+        return greedyValueSort(items);
     }
-    /*
-    this is just a bubble sort but the data set is only 10 items,
-    the worst case scenario would be 100 iterations which is nothing
-     */
-    public ArrayList<Item> greedySort(ArrayList<Item> items){
-        boolean flag = true;
-        while (flag) {
-            flag = false;
-            for (int i = 1; i < items.size(); i++) {
-                Item item1 = items.get(i - 1);
-                Item item2 = items.get(i);
-                if (item1.getValue() / item1.getVolume() < item2.getValue() / item2.getVolume()) {
-                    items.set(i - 1, item2);
-                    items.set(i, item1);
-                    flag = true;
-                }
-            }
-        }
+    public ArrayList<Item> getRandomItems(){
         return items;
     }
+
+
+    /**
+     * when multiplying the compareTo() method with -1
+     * you get a sorted list with first largest elements
+     * and then smaller depending on your criteria
+     */
     class ValuePerSpaceCompare implements Comparator<Item>{
+        public int compare(Item one, Item two){
+            return Double.compare(one.getValue()/one.getVolume(),two.getValue()/two.getVolume());
+        }
+    }
+
+    class SpaceCompare implements Comparator<Item>{
         public int compare(Item one, Item two){
             return Double.compare(one.getVolume(),two.getVolume());
         }
     }
-    public ArrayList<Item> timSort(ArrayList<Item> items){
+
+    public ArrayList<Item> greedyValueSort (ArrayList<Item> items){
         Collections.sort(items,new ValuePerSpaceCompare());
         return items;
     }
+    public ArrayList<Item> greedySpaceSort (ArrayList<Item> items){
+        Collections.sort(items,new SpaceCompare());
+        return items;
+    }
+
     private ArrayList<Item> items;
 }

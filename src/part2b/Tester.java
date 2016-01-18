@@ -7,7 +7,7 @@ public class Tester {
     @Test
     public void test(){
         Application3 app = new Application3();
-        app.setTimeLimit(20000);
+        app.setTimeLimit(500);
         app.fillTruck(new Pento3DTruck());
         Truck mostValuableTruck = app.getMostValuableTruck();
         System.out.println();

@@ -50,6 +50,7 @@ public class GreedyAlgorithmStandard {
 			}
 		}
 		return score;
+
 	}
 	
 	public void fillEmpty() {

@@ -21,9 +21,13 @@ public class Tester {
         app1.boardGreedyFill(new Board());
         app1.setTimeLimit(10);
         Board mostValuableBoard = app1.getMostValuableBoard();
+        mostValuableBoard.printBoard();
+        mostValuableBoard.boardValue();
         app1.boardFill(mostValuableBoard);
+
         Board mostValuableBoard2 = app1.getMostFilledBoard();
         Truck mostValuableTruck = app1.createMostFilledTruck();
+        mostValuableTruck.printCargoSpace();
         System.out.println(mostValuableTruck.truckUsage());
         System.out.println(mostValuableTruck.truckValue("pento"));
     }
